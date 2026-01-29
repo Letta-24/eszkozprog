@@ -1,0 +1,16 @@
+en
+conf t
+hostname SW-GVZS
+int vl 1
+ip address 192.168.40.143 255.255.255.0
+no shutdown
+exit
+ip domain-name Letti.13
+crypto key generate rsa
+1024
+ip ssh version 2
+username letti privilege 15 pass letti
+line vty 0 15
+transport input ssh
+login local
+exit
