@@ -1,0 +1,4 @@
+kulcsszó utáni összes adatot kiadja = show running-config | begin
+olyan szekciókat mutat meg ami azzal kezdődik = show runing-config |section enable
+|exclued enable
+olyan adatokat mutat ami bele tartozik = running-config |inclued enable
