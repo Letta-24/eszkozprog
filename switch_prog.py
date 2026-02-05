@@ -13,6 +13,11 @@ def set_enable_pwd(ssh):
     jelszo = input("Add meg az új enable jelszót!:")
     ssh.send_config_set(f"enable password {jelszo}")
     
+def banner_jelszo_ellenorzes(ssh):
+    ssh.send_config_set(f"banner motd #Jogosulatlanul bejelenktkezni TILOS!#")
+    print(ssh.send_command("show running-config |include password"))
+    print(ssh.send_command("show running-config |include secret"))
+    
 # -------------------------
 # PROGRAM
 # -------------------------
@@ -34,5 +39,19 @@ try:
         # 4.f
             print(set_enable_pwd)
             print(kapcsolat.send_command("show running-config | include enable"))
+            
+        #5.f
+        
+        #6.f
+        
+        #7.f
+        print()
+        print(kapcsolat.send_command("no ip domain lookup"))
+        #8.f
+        print()
+        print(kapcsolat.send_command("spanning-tree mode rapid pvst"))
+        #9.f
+        print()
+        print(kapcsolat.send_command("erase startup-config"))
 except Exception as ex:
     print(f"Csatlakozási hiba: {ex}")
