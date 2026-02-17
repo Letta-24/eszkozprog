@@ -7,6 +7,8 @@ login_adatok ={
     "password": "letti"
 }
 
+#Vlanok kiíratása
+
 def vlan_ok(ssh):
     parancsok = [
     "vlan 10",
@@ -20,16 +22,24 @@ def vlan_ok(ssh):
     ]
     ssh.send_config_set(parancsok)
     
-def konzol_ellenor(ssh):
-    pass
-def konzol_jelszo(ssh):
-    
-    #replace("konJelszo")
-    pass
-def interface_szam(ssh):
-    #count()
-    pass
+#konzol jelszavas védelem ellenőrzése
 
+def konzol_ellenor(ssh):
+   ssh.send_config_set(konzol_ellenor)
+#konzoljelszó megváltoztatása
+def konzol_jelszo(ssh):
+    konzoljel = [
+        "line console 0",
+        "password konJelszo"
+        ]
+    ssh.send_config_set(konzoljel)
+    
+    
+#interfészek típusai és annak darab száma  
+def interface_szam(ssh):
+    
+    ssh.send_config_set(interface_szam)
+    
 # -------------------------
 # PROGRAM
 # -------------------------
@@ -40,8 +50,14 @@ try:
         vlan_ok(kapcsolat)
         print(kapcsolat.send_command("show vlan brief"))
         #2.f
+        konzol_ellenor(kapcsolat)
+        print(kapcsolat.send_command("show running-config | include line con 0"))
         #3.f
-        
+        konzol_jelszo(kapcsolat)
+        print(kapcsolat.send_command("show running-config | include line con 0"))
+        print(kapcsolat.send_command("show running-config | include password"))
         #4.f
+        interface_szam(kapcsolat)
+        print(kapcsolat.send_command("show running-config | include interface"))
 except Exception as ex:
     print(f"Csatlakozási hiba: {ex}")

@@ -1,0 +1,24 @@
+
+ip access-list standard SSH_ACCESS
+permit host 51.247.135.94 
+deny any
+
+line vty 0 15
+access-class SSH_ACCESS in
+
+ip access-list extended SERVICE_ACCESS
+permit udp host 51.247.135.65 host 147.86.99.126 eq 1812
+permit udp host 202.6.2.13 host 147.86.99.126 eq 1812
+
+permit tcp host 51.247.135.94 host 147.86.99.126 eq 80
+
+int G0/0
+ip access-group SERVICE_ACCESS out
+exit
+
+ip access-list extended PING_LIMIT
+deny icmp 147.86.99.112 0.0.0.31 
+
+intG0/0
+ip access-group PING_LIMIT in
+exit
