@@ -9,3 +9,5 @@ Egyszer volt hol nem volt...
 2. Biztonságos csatlakozás és show secu_show.py
 
 3. feladat egyzserű lekérdezések,beállítások
+
+5. feladat tftp mentés

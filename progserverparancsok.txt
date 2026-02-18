@@ -2,3 +2,8 @@ kulcsszó utáni összes adatot kiadja = show running-config | begin
 olyan szekciókat mutat meg ami azzal kezdődik = show runing-config |section enable
 |exclued enable
 olyan adatokat mutat ami bele tartozik = running-config |inclued enable
+.send-command(" ")
+.send-config-set([])
+.send-multiline-timing([]) -tftp mentéshez,nvram (/n),kulcsgenerálás,törlés-startup-vlan dat,újraindítás
+login block-for... - jelszó feltőrési kísérletre
+elevated level:  pl. if jelszóhossz < 8: jelszó csere
