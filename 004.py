@@ -9,8 +9,10 @@ login_adatok ={
 
 try:
     with ConnectHandler(**login_adatok) as kapcsolat:    
+        #1.
+        kapcsolat.send_config_set("login block-for[60]")
+        kapcsolat.send_command("show running-config |include password")
         
-        password = jelszo.split("\n")
         #3.tftp mentés
         tftp_ip = input(f"Adja meg a szerver IP-címét!:")
         fajlnev = input(f"Mentendő konfig fálj neve:")
