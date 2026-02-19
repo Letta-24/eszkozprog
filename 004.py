@@ -10,6 +10,7 @@ login_adatok ={
 try:
     with ConnectHandler(**login_adatok) as kapcsolat:
         
+        #2.
         valasz = kapcsolat.send_command("show run")
         if "enable password" in valasz:
             jelszo = kapcsolat.send_command("show run | include enable password").split(' ')[-1]
@@ -42,10 +43,7 @@ try:
                     print("A jelszó beéllítása megtörtént.")
                 else:
                     print("MEgfelelő az konzol jelszó")   
-                    
-                    
-                    
-        #--------------------
+
         
         vty = kapcsolat.send_command("sh run | section line vty")
         vty = vty.split("\n")
@@ -63,7 +61,13 @@ try:
                     kapcsolat.send_config_set(["line con 0" , f"password {ujjelszo2}"])
                     print("A jelszó beéllítása megtörtént.")
                 else:
-                    print("MEgfelelő az konzol jelszó")      
+                    print("Megfelelő az konzol jelszó")
+        
+        
+                    
+        felh = kapcsolat.send_command("sh run | include username")
+        felh = felh.split("\n")
+        
 
 
 except Exception as ex:
