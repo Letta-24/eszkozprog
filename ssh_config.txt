@@ -30,3 +30,21 @@ try:
         pass
 except Exception as ex:
     print(f"Csatlakozási hiba: {ex}")
+
+from getpass import getpass <- jelszó nem jeleníti meg
+
+login_adatok ={
+    "device_type": "cisco_ios",
+    "host": "192.168.40.143",
+    "username": "letti",
+    "password": "getpass()"
+}
+
+try:
+    with ConnectHandler(**login_adatok) as kapcsolat:    
+        
+        cli_out = kapcsolat.check_enable_mode()
+        print(f"{cli_out}")
+        
+except Exception as ex:
+    print(f"Csatlakozási hiba: {ex}")

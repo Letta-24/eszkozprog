@@ -1,0 +1,35 @@
+Hálozati címfordítás
+Network Address Translation (NAT)
+
+ipv4 korlátai:
+		- 32 bit
+		- cím osztályok:D csoport címek,E címek kísérleti 
+		- lefoglalt cím tartományok : 127.0.0.0/8 -loopback cím tartomány 2 24-en
+						169.254.0.0/16 A.P.I.P.A 2 16-on
+
+
+		- VLSM (CIDR)
+		- privát cím :10.0.0.0/8,172.16.0.0/12,192.168.0.0/16 ->NAT:privát cím <-> publikus cím
+
+
+típusai:
+	- statikus NAT (SNAT) 
+		elsődleges irány: befelé irány
+		használata:szerverek elérhetővé tétele
+		hozzárendelés típusa: kézi fix bhc -> bgc hozzárendelés (1:1)
+		pub. címigény: annyi amennyi eszköz számára lehetővé szeretném tenni a publikus hálozaton keresztüli kommunikálást
+
+	- dinamikus NAT (DNAT)
+		- elsődleges irány: kifelé
+		- használat: kliensek esetén
+		- hozzárendelés típusa: dinamikus bhc-> ? bgc
+		- pub. címigény: 
+
+	- túlterheléses NAT (PAT)
+	- port továbbítás (Port forward:PF)
+
+
+
+	
+bhc:belső helyi cím
+bgc: belső globális cím
