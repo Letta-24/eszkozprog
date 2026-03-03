@@ -11,25 +11,68 @@ ipv4 korlátai:
 		- VLSM (CIDR)
 		- privát cím :10.0.0.0/8,172.16.0.0/12,192.168.0.0/16 ->NAT:privát cím <-> publikus cím
 
+bgc:belső globális cím
+bhc: belső helyi cím
+kg:külső globális cím
+kh: külső helyi cím
 
 típusai:
-	- statikus NAT (SNAT) 
+	- statikus NAT (SNAT) ahol a privi és pubi címek találkoznak
 		elsődleges irány: befelé irány
 		használata:szerverek elérhetővé tétele
 		hozzárendelés típusa: kézi fix bhc -> bgc hozzárendelés (1:1)
 		pub. címigény: annyi amennyi eszköz számára lehetővé szeretném tenni a publikus hálozaton keresztüli kommunikálást
 
+		konf:
+		(conf-if)#ip nat inside/outside -belső helyi háló és privát címzést használó/forgalom publikus hálóra csatlakozó int.
+		ip nat |mit|mire
+		
+		ip nat inside source static <privi. ip cim> <cél pub. ip cím>
+
+
 	- dinamikus NAT (DNAT)
 		- elsődleges irány: kifelé
-		- használat: kliensek esetén
-		- hozzárendelés típusa: dinamikus bhc-> ? bgc
-		- pub. címigény: 
+		- használat: kliensek/hostok esetén
+		- hozzárendelés típusa: dinamikus bhc-> ? bgc 1:N
+		- pub. címigény: annyi amenyi a statikus nat-nál és kevesebb is elég lehet
+		
+	konf.
+		nat szabály:a)privát címek amiknek szabad netezni:
+				access-list <sorszám 1-99> permit | deny  <IP | IP-k> 
+			b)publikus címek:
+				ip nat pool <név> <kezdő ip> <utolsó ip> netmask <maszk>
+				ip nat inside source list <sorszám> pool <név>
+
 
 	- túlterheléses NAT (PAT)
+		használata:
+		elsődleges íránya:
+		hozzárendelés típusa:
+		pub.címigény:
+
+	a)néhány publikus cím
+		konf.
+			ip nat inside source list <sorszám> pool <név> overload
+
+	b)1 db publikus cím
+		konf.
+			nincs pool!hanem acl kell
+			ip nat inside source list <sorszám> interface <kimenő if> overload
+		
+		ell.
+		show ip nat translation
+		show ip nat statistics
+
 	- port továbbítás (Port forward:PF)
+		használata: szolgáltatásokhoz enged hozzáférést 
+		elsődleges íránya : befelé
+		hozzárendelés típusa: 1:1
+		pub. címígény: elérthető szolgáltatást nyújtó szerverek
+		- elrejtehető más szolgáltatások elől
+konf.
+nat tábla:
+bhc,bgc,kg,kh + socket ip:port ->milyen porton figyel,külvilág milyen porton látja 
 
-
-
-	
-bhc:belső helyi cím
-bgc: belső globális cím
+1-if-szerepek meghatározása
+2. nat szabály létrehozzása
+	ip nat inside source static <protokol> <port> <bhc> <a)> <bgc> <b)>

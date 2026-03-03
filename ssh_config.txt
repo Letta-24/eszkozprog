@@ -1,8 +1,8 @@
 en
 conf t
-hostname SW-GVZS
-int vl 1
-ip address 192.168.40.143 255.255.255.0
+hostname R-GVZS
+int G0/0
+ip address 192.168.40.243 255.255.255.0
 no shutdown
 exit
 ip domain-name Letti.13
@@ -20,7 +20,7 @@ from netmiko import ConnectHandler
 
 login_adatok ={
     "device_type": "cisco_ios",
-    "host": "192.168.40.143",
+    "host": "192.168.40.243",
     "username": "letti",
     "password": "letti"
 }
@@ -30,6 +30,16 @@ try:
         pass
 except Exception as ex:
     print(f"Csatlakozási hiba: {ex}")
+
+
+
+
+
+
+
+
+
+
 
 from getpass import getpass <- jelszó nem jeleníti meg
 
@@ -45,6 +55,7 @@ try:
         
         cli_out = kapcsolat.check_enable_mode()
         print(f"{cli_out}")
-        
 except Exception as ex:
     print(f"Csatlakozási hiba: {ex}")
+
+

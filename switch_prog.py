@@ -2,7 +2,7 @@ from netmiko import ConnectHandler
 
 login_adatok ={
     "device_type": "cisco_ios",
-    "host": "192.168.40.143",
+    "host": "192.168.40.243",
     "username": "letti",
     "password": "letti"
 }

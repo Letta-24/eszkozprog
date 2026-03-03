@@ -96,11 +96,5 @@ try:
                         osszerakott += szo + ' '
                     kapcsolat.send_config_set(f"{osszerakott}{usejelszo}")
                     print("A jelszó beállítása megtörtént.(°_,°)")
-            
-                    
-            
-                
-            
-
 except Exception as ex:
     print(f"Csatlakozási hiba: {ex}")
