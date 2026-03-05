@@ -18,6 +18,7 @@ try:
     pc = kapcsolat.send_config_set("router ospf 13")
     pc = kapcsolat.send_config_set("network 172.162.243.14 255.255.255.252")
     ell = kapcsolat.send_command ("show ip ospf 13 | include network")
+    print(ell)
     
     #ospf sávszélesség bekérése a felhasználótól
     band = input("Kérlek add meg a sávszélességet az ospf-hez:")
