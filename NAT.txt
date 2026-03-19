@@ -76,3 +76,21 @@ bhc,bgc,kg,kh + socket ip:port ->milyen porton figyel,külvilág milyen porton l
 1-if-szerepek meghatározása
 2. nat szabály létrehozzása
 	ip nat inside source static <protokol> <port> <bhc> <a)> <bgc> <b)>
+
+
+Előnyei:
+	-az ipv4 címek használhatósága rugalmasabb/kibövült(időben)
+	-A belső hálozat címzése rejtve van a külvilág felé.
+Hátránya:
+	-erőforrásigény ->CPU
+                         ->Memória
+	-késleltetés
+	-sérül a végponttól végpontig nyomon követhetősége
+	-bizonyos protokollokkal nem használható együtt 
+
+NAT64
+
+ipv6(ULA:unit local address)<-->ipv4
+
+-(beágyazás) alagút
+-"csere"

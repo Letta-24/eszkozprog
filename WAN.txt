@@ -1,0 +1,20 @@
+WAN - Wide Area network
+
+összeköti a lanokat a kommunikáláshoz
+szolgáltatásokat nyújt
+
+előnye csak a saját forgalmam biztonságosabb és nem férhetnek mások hozzá
+sávszélessége állandó
+
+topológiái
+pont-pont 
+hub and spoke forgalomírányítókat köt össze
+
+lan topológiái
+csillag
+busz
+gyűrű
+részleges és teljes háló
+
+wan szabványok ugyanazok mint lan-nál:tia/eia,iso,ieee
+sok féle keret formátum van mert sokféle közeg van

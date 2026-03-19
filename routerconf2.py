@@ -9,11 +9,11 @@ login_adatok ={
 def roas_conf(ssh):
     roas= [
         "interface G0/1.11",
-        "encapsulation dot1q vlan 11",
+        "encapsulation dot1q 11",
         "ip address 192.168.11.11 255.255.255.0",
         "no shutdown",
         "interface G0/1.13",
-        "encapsulation dot1q vlan 13",
+        "encapsulation dot1q 13",
         "ip address 192.168.13.13 255.255.254.0",
         "no shutdown",
         "interface G0/1",
@@ -26,11 +26,27 @@ try:
     with ConnectHandler(**login_adatok) as kapcsolat:    
        #1.Roas konfigurálás
        roas_conf(kapcsolat)
-       print(kapcsolat.send_command("show running-config | include Interfaces"))
-       print(kapcsolat.send_command("show running-config | include GigabitEthernet"))
-       #2. 
-       vl = input(f"Kérlek add meg a vlan azonosító számát:")
-       vl = input(f"Kérlek add meg a vlan ip címét:")
+       print(kapcsolat.send_command("show ip interface brief"))
        
+       #2.
+       
+       #3.tftp mentés
+       tftp = input(f"Kérlek add meg a szerver ip címét:")
+       fajlnev = input (f"mentendő konfig fálj neve:")
+       
+       output = kapcsolat.send_multiline_timing(["copy running-config tftp",tftp,fajlnev])
+       print(output)
+       
+       #4.alinterfécek kiíratása vlanjaikkkal
+       all = kapcsolat.send_command("show running-config | section interfaces")
+       all = kapcsolat.send_command("show running-config | include GigabitEthernet")
+       allint = all.split("\n")
+       print(allint)
+       for i in range (allint):
+           if "." in allint:
+            print(allint.strip("."))
+
+            
+        
 except Exception as ex:
     print(f"Csatlakozási hiba: {ex}")

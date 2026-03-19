@@ -1,5 +1,5 @@
 kulcsszó utáni összes adatot kiadja = show running-config | begin
-olyan szekciókat mutat meg ami azzal kezdődik = show runing-config |section enable vagy |exclued enable
+olyan szekciókat részeket mutat meg ami azzal kezdődik = show runing-config |section enable vagy |exclued enable
 olyan adatokat mutat ami bele tartozik = running-config |inclued enable
 .send-command(" ") - parancsot küld nem konfigurációsat
 .send-config-set([]) -konfigurácios parancsot kuld
@@ -9,10 +9,13 @@ elevated level:  pl. if jelszóhossz < 8: jelszó csere
 
 
 len = elemek száma
-split("\n") = szóközök eltávolítása
+split("\n") = enterenként darabolás
+strip("\n") = szóközök eltávolítása
 false = hamis , true = igaz
 while = miközben xy folyamat lezajlik (háttérben folyó folyamat)
 input = szöveg formájú bekérés
 int = szám alapú bekérés
 for i in range() = ciklus
 == - > egyenlő v. megegyezik , != -> nem egyezik meg
+strip -> adott karaktert távolít el
+uptime <- üzemidőt mutat
