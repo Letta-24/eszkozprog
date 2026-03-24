@@ -18,3 +18,5 @@ részleges és teljes háló
 
 wan szabványok ugyanazok mint lan-nál:tia/eia,iso,ieee
 sok féle keret formátum van mert sokféle közeg van
+
+DSL
